@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using API.Extensions;
 using Application.Activities;
 using Application.Core;
 using MediatR;
@@ -30,12 +29,32 @@ namespace API
         }
 
 
+        //In the extension i moved this code so my startup would be cleaner, it is not going to save me code is it just cleaner
+        // I made the extension class static so i do not have to to make an instince of it every time i use it  
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllers();
-            services.AddApplicationServices(_config);
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+            });
+            services.AddDbContext<DataContext>(opt =>
+            {
+
+                opt.UseSqlite(_config.GetConnectionString("DefaultConnection"));
+            });
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+                });
+            });
+            services.AddMediatR(typeof(List.Handler).Assembly);
+            services.AddAutoMapper(typeof(MappingProfiles).Assembly);
         }
 
 
