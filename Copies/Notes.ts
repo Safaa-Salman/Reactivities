@@ -1,6 +1,8 @@
 //npm install uuid for create guid be careful to install it in client-app
 //npm install mobx mobx-react-lite in cd client-app; note that i am installing both mobX and mobX-react-lite if i do not want to use observer i can only install mobX
 //we are usinng mobX because it is simple to use and written in type script
+//npm install react-router-dom
+//npm install @types/react-router-dom --save-dev
 
 // export default class ActivityStore {
 //     title = 'Hello from MobX!';
