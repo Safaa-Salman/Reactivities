@@ -5,6 +5,8 @@
 //npm install @types/react-router-dom --save-dev
 //npm install react-calendar
 //npm install @types/react-calendar
+//npm install react-toastify
+//dotnet ef database drop -s API -p Persistence  :restart server and drop database
 
 // export default class ActivityStore {
 //     title = 'Hello from MobX!';
@@ -62,3 +64,14 @@
 // } 
 //loadinginitial is an observable that is changing but since it is after await it wasn't in the tick and I was given a warning that loadingInitial should be action wrapped so i wrapped it in runInAction
 //But an alternative aproach is to make the setting of the loading into an action by making it a function on it's own; so because the change of state is happening inside it's own action we don't need to wrap it
+
+//axios.interceptors.response.use(async response => {
+//     try {
+//         await sleep(1000);
+//         return response;
+//     } catch (error) {
+//         console.log(error);
+//         return await Promise.reject(error);
+//     }
+// })
+//interceptor before changing it and usingthe toastify

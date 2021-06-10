@@ -1,6 +1,5 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Core;
 using AutoMapper;
 using Domain;
 using FluentValidation;
@@ -11,7 +10,7 @@ namespace Application.Activities
 {
     public class Edit
     {
-        public class Command : IRequest<Result<Unit>>
+        public class Command : IRequest
         {
             public Activity Activity { get; set; }
         }
@@ -24,7 +23,7 @@ namespace Application.Activities
             }
         }
 
-        public class Handler : IRequestHandler<Command, Result<Unit>>
+        public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
@@ -34,19 +33,15 @@ namespace Application.Activities
                 _context = context;
 
             }
-            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 var activity = await _context.Activities.FindAsync(request.Activity.Id);
 
-                if (activity == null) return null;
+                _mapper.Map(request.Activity, activity); //(map from, map to), (map from the activity coming via our request, map to object comming from dataBase (our entity)) so now we update every field that we are updating and this saves us alot of code 
 
-                _mapper.Map(request.Activity, activity); 
+                await _context.SaveChangesAsync();
 
-                var result = await _context.SaveChangesAsync() > 0;
-
-                if (!result) return Result<Unit>.Failure("Failed to update activity");
-
-                return Result<Unit>.Success(Unit.Value);
+                return Unit.Value;
             }
         }
     }
