@@ -7,6 +7,11 @@
 //npm install @types/react-calendar
 //npm install react-toastify
 //dotnet ef database drop -s API -p Persistence  :restart server and drop database
+//npm install yup :in cd client-app: it is not written in type script we should add: npm install @types/yup --save-dev
+
+//For the forms: formik.org  ---> npm install formik in cd client-app
+//For datepickers: https://reactdatepicker.com/  --> npm install react-datepicker if you get error about "unable to resolve depenancy" then you can use: npm install react-datepicker --legacy-peer-deps and datepicker is not written in type script so we write: npm install @types/react-datepicker --save-dev
+// To fix the string/date type issue we use fns https://date-fns.org/ --> npm install date-fns@2.22.1 (you write npm ls date-fns and install the version  given )
 
 // export default class ActivityStore {
 //     title = 'Hello from MobX!';
