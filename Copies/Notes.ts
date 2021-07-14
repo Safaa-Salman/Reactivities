@@ -8,10 +8,22 @@
 //npm install react-toastify
 //dotnet ef database drop -s API -p Persistence  :restart server and drop database
 //npm install yup :in cd client-app: it is not written in type script we should add: npm install @types/yup --save-dev
+//dotnet restore: if you install new nuget packet and quick fix is not recognizing it  
 
 //For the forms: formik.org  ---> npm install formik in cd client-app
 //For datepickers: https://reactdatepicker.com/  --> npm install react-datepicker if you get error about "unable to resolve depenancy" then you can use: npm install react-datepicker --legacy-peer-deps and datepicker is not written in type script so we write: npm install @types/react-datepicker --save-dev
 // To fix the string/date type issue we use fns https://date-fns.org/ --> npm install date-fns@2.22.1 (you write npm ls date-fns and install the version  given )
+
+// IMPORTANT!!!!!!!!
+// whenever we make new migration we should turn off our .net server
+// in the solution (no cd) we write
+// dotnet ef migrations add IdentityAdded -p Persistence -s API
+//                          name           where          flag to starter project
+
+// jwt.io --> decode the token to test if everything is alright
+//For storages of secrets of the app you can either use appsettings.json() without publiching to gitHub or take a look at https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows
+//Note: for things that you do not care if someone saw them you put it in appsettings.Development.json() (appsettings.Development.json() is only used in development)
+
 
 // export default class ActivityStore {
 //     title = 'Hello from MobX!';
