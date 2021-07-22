@@ -1,0 +1,32 @@
+//Section 14 when I added the ICollection to the Domain to do a migration I wrote --> dotnet ef migrations add ActivityAttendee -p Persistence -s API
+
+However this is not good because, yes if I look at the migrations in the Persistence i see:
+
+
+using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace Persistence.Migrations
+{
+    public partial class ActivityAttendee : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "ActivityAppUser",
+                columns: table => new
+                {
+                    ActivitiesId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    AttendeesId = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ActivityAppUser", x => new { x.ActivitiesId, x.AttendeesId });
+                    table.ForeignKey(
+                        name: "FK_ActivityAppUser_Activities_ActivitiesId",
+     ...
+
+He created a table of both keys which is good, However by convention I cannot add any new column to this table and I want to add date and isHost but i cannot do that 
+so i will remove the migration and do it manually 
+so to remove it i write:
+dotnet ef migrations remove -p Persistence -s API

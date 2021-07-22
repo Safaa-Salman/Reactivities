@@ -25,6 +25,27 @@
 //Note: for things that you do not care if someone saw them you put it in appsettings.Development.json() (appsettings.Development.json() is only used in development)
 
 
+//To create the the infrastructure project we write in the terminal:
+//dotnet new classlib -n Infrastructure
+//dotnet sln add Infrastructure
+//cd Infrastructure
+//dotnet add reference ../Application    (Infrastructure has dependency on Appliaction)
+//cd ..
+//cd API
+//dotnet add reference ../Infrastucture   (API has dependency on Infrastructure)
+//cd ..
+//dotnet restore         (so that everyone is aware of these dependencies)
+
+
+//Loading related entities documentation: https://docs.microsoft.com/en-us/ef/ef6/querying/related-data
+
+//Whenever i change the seeds; i drop the database and restart my app:
+//in the main folder
+//dotnet ef database drop -p Persistence -s API
+//y
+//cd API 
+//dotnet watch run (this will reseed our database)
+
 // export default class ActivityStore {
 //     title = 'Hello from MobX!';
 
