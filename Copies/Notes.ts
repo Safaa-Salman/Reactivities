@@ -1,3 +1,46 @@
+//dotnet --info
+//dotnet -h
+//dotnet new -l
+//mkdir Reactivities
+//cd Reactivities
+//creating the projects in the command Prompt
+//dotnet new sln :Multiplte projects --> solution file as a container
+//dotnet new webapi -n API :Starter Projects, the project that runs the application
+//Supporting projects
+//dotnet new classlib -n Application
+//dotnet new classlib -n Domain
+//dotnet new classlib -n Persistence
+//dir
+
+//Add the projects to the solution:
+//dotnet sln add API/API.csproj
+//dotnet sln add Application
+//dotnet sln add Domain
+//dotnet sln add Persistence
+//dotnet sln list
+
+//API has dependency on Application
+//cd API 
+//dotnet add reference ../Application
+
+//Application has dependency on Domain and Persistence
+//cd ..
+//cd Application
+//dotnet add reference ../Domain
+//dotnet add reference ../Persistence
+
+//Persistence has dependency on Domain 
+//cd ..
+//cd Persistence
+//dotnet add reference ../Domain
+
+//Packages used:
+//cd project
+//dotnet list package
+
+//npx create-react-app client-app --use-npm --template typescript
+//npm install semantic-ui-react semantic-ui-css
+//npm install axios
 //npm install uuid for create guid be careful to install it in client-app
 //npm install mobx mobx-react-lite in cd client-app; note that i am installing both mobX and mobX-react-lite if i do not want to use observer i can only install mobX
 //we are usinng mobX because it is simple to use and written in type script
@@ -6,6 +49,8 @@
 //npm install react-calendar
 //npm install @types/react-calendar
 //npm install react-toastify
+//npm install --save history
+//npm install --save @types/history
 //dotnet ef database drop -s API -p Persistence  :restart server and drop database
 //npm install yup :in cd client-app: it is not written in type script we should add: npm install @types/yup --save-dev
 //dotnet restore: if you install new nuget packet and quick fix is not recognizing it  
@@ -14,11 +59,24 @@
 //For datepickers: https://reactdatepicker.com/  --> npm install react-datepicker if you get error about "unable to resolve depenancy" then you can use: npm install react-datepicker --legacy-peer-deps and datepicker is not written in type script so we write: npm install @types/react-datepicker --save-dev
 // To fix the string/date type issue we use fns https://date-fns.org/ --> npm install date-fns@2.22.1 (you write npm ls date-fns and install the version  given )
 
+
+
+
+//for migrations: dotnet tool list --global  to see the version 
+//if it is out of date dotnet tool update --global dotnet-ef
+//Note that ef tool version must me same as runtime if not update by the above
+//dotnet ef -h (you will see migrations DbContext and datbase, we will do migration then fill the databse)
 // IMPORTANT!!!!!!!!
 // whenever we make new migration we should turn off our .net server
 // in the solution (no cd) we write
 // dotnet ef migrations add IdentityAdded -p Persistence -s API
 //                          name           where          flag to starter project
+//to undo migration ef migrations remove
+
+//after the first migration you should create the database:
+//dotnet ef database -h  (update or drop)
+//The update creates or updates depending on whenever or not there is a database, Howhever i did not use this and i changed Program.cs
+//So after changing the Program.cs i run the application 
 
 // jwt.io --> decode the token to test if everything is alright
 //For storages of secrets of the app you can either use appsettings.json() without publiching to gitHub or take a look at https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-5.0&tabs=windows
