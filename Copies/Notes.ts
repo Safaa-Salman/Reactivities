@@ -58,9 +58,10 @@
 //For the forms: formik.org  ---> npm install formik in cd client-app
 //For datepickers: https://reactdatepicker.com/  --> npm install react-datepicker if you get error about "unable to resolve depenancy" then you can use: npm install react-datepicker --legacy-peer-deps and datepicker is not written in type script so we write: npm install @types/react-datepicker --save-dev
 // To fix the string/date type issue we use fns https://date-fns.org/ --> npm install date-fns@2.22.1 (you write npm ls date-fns and install the version  given )
+// For uploading images we are using react dropzone --> https://react-dropzone.js.org/ ---> npm install --save react-dropzone
+// To crop images we are using react cropper --> https://www.npmjs.com/package/react-cropper ---> npm install --save react-cropper
 
-
-
+//dotnet new gitignore --> create new gitignore file
 
 //for migrations: dotnet tool list --global  to see the version 
 //if it is out of date dotnet tool update --global dotnet-ef
