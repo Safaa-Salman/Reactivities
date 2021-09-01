@@ -61,6 +61,8 @@
 // For uploading images we are using react dropzone --> https://react-dropzone.js.org/ ---> npm install --save react-dropzone
 // To crop images we are using react cropper --> https://www.npmjs.com/package/react-cropper ---> npm install --save react-cropper
 
+//install SignalR on API it is already in microsoft no need ; but in client-app you should install it by --> npm install @microsoft/signalr (in cd client-app) (already in typescript since microsoft created typescript)
+
 //dotnet new gitignore --> create new gitignore file
 
 //for migrations: dotnet tool list --global  to see the version 
